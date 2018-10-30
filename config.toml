@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://asyncbyte.github.io/"
 title = "AsyncByte Software"
 theme = "manis"
 
