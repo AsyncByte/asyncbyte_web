@@ -1,0 +1,34 @@
+{{ partial "header" . }}
+<article>
+	<header>
+		{{ partial "title" . }}
+		{{ with .Content }}{{.}}{{ end }}
+	</header>
+	<section>
+		<h4>{{ T "Our Apps" }}</h4>
+	</section>
+	{{ $latestcount := .Site.Params.LatestCount | default 3 }}
+	{{ $latestcountworks := .Site.Params.LatestCountWorks | default 1 }}
+	{{ $postsection := .Site.Params.PostSection | default "post" }}
+	<section>
+		<h4>{{ T "latestPost" }}</h4>
+		<ul class="no-bullet">
+			{{- range (first $latestcount (where .Pages "Section" $postsection)) -}}
+			{{ partial "li" . }}
+			{{- end -}}
+		</ul>
+	</section>
+
+	{{ $worksection := .Site.Params.WorkSection | default "work" }}
+	{{ with .Site.GetPage "section" $worksection }}
+	<section>
+		<h4>{{ T "latestWork" }}</h4>
+		<ul class="no-bullet">
+			{{- range (first $latestcountworks (where .Pages "Section" $worksection)) -}}
+			{{ partial "li_2" . }}
+			{{- end -}}
+		</ul>
+	</section>
+	{{ end }}
+</article>
+{{ partial "footer" . }}
